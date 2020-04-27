@@ -52,11 +52,11 @@
             <div class="card-body">
                 <p class="card-text">How important is religion to you?</p>
                 <div class="btn-group">
-                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown"
+                    <button class="btn btn-secondary btn-sm dropdown-toggle q1" type="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         Answer
                     </button>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu a1" >
                         <p class="dropdown-item">1 (Not important at all)</p>
                         <p class="dropdown-item">2 </p>
                         <p class="dropdown-item">3 </p>
@@ -66,11 +66,11 @@
                 </div>
                 <p class="card-text">How important are sports to you?</p>
                 <div class="btn-group">
-                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown"
+                    <button class="btn btn-secondary btn-sm dropdown-toggle q2" type="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         Answer
                     </button>
-                    <div class="dropdown-menu">
+                    <div class="dropdown-menu a2">
                         <p class="dropdown-item">1 (Not important at all)</p>
                         <p class="dropdown-item">2 </p>
                         <p class="dropdown-item">3 </p>
@@ -81,15 +81,24 @@
                 
             </div>
         </div>
+    </div>
 </body>
 
 <script type="text/javascript">
+// var numbers = [1,2,3,4,5,6,7,8,9,10]
 
-$(".dropdown-menu p").on("click", function(){
+function dropDown(i){
+$(".a"+i+" p").on("click", function(){
     
-    $(".btn:first-child").text($(this).text());
-      $(".btn:first-child").val($(this).text());
+    $(".q"+i+":first-child").text($(this).text());
+      $(".q"+i+":first-child").val($(this).text());
 })
+}
+
+for(var i=1;i<=10;i++){
+console.log(i)
+dropDown(i)
+}
 
 </script>
 
