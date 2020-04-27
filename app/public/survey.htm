@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
                         <small id="emailHelp" class="form-text text-muted">This will be provided to your matches</small>
                     </div>
                 </form>
@@ -50,7 +50,8 @@
                 Friend Finder Survey
             </div>
             <div class="card-body">
-                <p class="card-text">Rate the following statements about yourself where 1 is "Strongly Disagree" and 5 is "Strongly Agree"</p>
+                <p class="card-text">Rate the following statements about yourself where 1 is "Strongly Disagree" and 5
+                    is "Strongly Agree"</p>
                 <hr class="my-4">
                 <p class="card-text">I consider myself to be a religious person</p>
                 <div class="btn-group">
@@ -58,12 +59,12 @@
                         aria-haspopup="true" aria-expanded="false">
                         Answer
                     </button>
-                    <div class="dropdown-menu a1" >
+                    <div class="dropdown-menu a1">
                         <p class="dropdown-item">1 </p>
                         <p class="dropdown-item">2 </p>
                         <p class="dropdown-item">3 </p>
                         <p class="dropdown-item">4 </p>
-                        <p class="dropdown-item">5  </p>
+                        <p class="dropdown-item">5 </p>
                     </div>
                 </div>
                 <hr class="my-4">
@@ -78,7 +79,7 @@
                         <p class="dropdown-item">2 </p>
                         <p class="dropdown-item">3 </p>
                         <p class="dropdown-item">4 </p>
-                        <p class="dropdown-item">5  </p>
+                        <p class="dropdown-item">5 </p>
                     </div>
                 </div>
                 <hr class="my-4">
@@ -93,7 +94,7 @@
                         <p class="dropdown-item">2 </p>
                         <p class="dropdown-item">3 </p>
                         <p class="dropdown-item">4 </p>
-                        <p class="dropdown-item">5  </p>
+                        <p class="dropdown-item">5 </p>
                     </div>
                 </div>
                 <hr class="my-4">
@@ -108,7 +109,7 @@
                         <p class="dropdown-item">2 </p>
                         <p class="dropdown-item">3 </p>
                         <p class="dropdown-item">4 </p>
-                        <p class="dropdown-item">5  </p>
+                        <p class="dropdown-item">5 </p>
                     </div>
                 </div>
                 <hr class="my-4">
@@ -123,7 +124,7 @@
                         <p class="dropdown-item">2 </p>
                         <p class="dropdown-item">3 </p>
                         <p class="dropdown-item">4 </p>
-                        <p class="dropdown-item">5  </p>
+                        <p class="dropdown-item">5 </p>
                     </div>
                 </div>
                 <hr class="my-4">
@@ -138,7 +139,7 @@
                         <p class="dropdown-item">2 </p>
                         <p class="dropdown-item">3 </p>
                         <p class="dropdown-item">4 </p>
-                        <p class="dropdown-item">5  </p>
+                        <p class="dropdown-item">5 </p>
                     </div>
                 </div>
                 <hr class="my-4">
@@ -153,7 +154,7 @@
                         <p class="dropdown-item">2 </p>
                         <p class="dropdown-item">3 </p>
                         <p class="dropdown-item">4 </p>
-                        <p class="dropdown-item">5  </p>
+                        <p class="dropdown-item">5 </p>
                     </div>
                 </div>
                 <hr class="my-4">
@@ -168,7 +169,7 @@
                         <p class="dropdown-item">2 </p>
                         <p class="dropdown-item">3 </p>
                         <p class="dropdown-item">4 </p>
-                        <p class="dropdown-item">5  </p>
+                        <p class="dropdown-item">5 </p>
                     </div>
                 </div>
                 <hr class="my-4">
@@ -184,7 +185,7 @@
                         <p class="dropdown-item">3 </p>
                         <p class="dropdown-item">4 </p>
                         <p class="dropdown-item">5 </p>
-                    </div>    
+                    </div>
                 </div>
                 <hr class="my-4">
                 <p class="card-text">I am comfortable talking about my feelings</p>
@@ -203,35 +204,84 @@
                 </div>
                 <br>
                 <br>
-                <button class="btn btn-primary" type= "submit" id="submit">Submit</button>
+                <button class="btn btn-primary" type="submit" id="submit">Submit</button>
             </div>
         </div>
     </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="popup">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Your Best Match</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <img id="matchImage" class="materialboxed" width="650" src="">
+                <h5 id="matchName"></h5>
+                <h5 id="matchEmail"></h5>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </body>
 
 <script type="text/javascript">
-var scores = []
+   var userData = {
+            name: "", 
+            photo:"", 
+            email:"", 
+            scores:[]
+        }
 
-function dropDown(i){
-$(".a"+i+" p").on("click", function(){
-    
-    $(".q"+i+":first-child").text($(this).text());
-      $(".q"+i+":first-child").val($(this).text());
-})
-}
+       
 
-for(var i=1;i<=10;i++){
+//replace dropdown button text with selection
+    function dropDown(i) {
+        $(".a" + i + " p").on("click", function () {
 
-dropDown(i)
-}
+            $(".q" + i + ":first-child").text($(this).text());
+            $(".q" + i + ":first-child").val($(this).text());
+        })
+    }
 
-$("#submit").on("click",function(){
-for(var i=1;i<=10;i++){
- scores.push($(".q"+i+":first-child").val().trim())
- 
-}
-console.log(scores)
-})
+    for (var i = 1; i <= 10; i++) {
+
+        dropDown(i)
+    }
+
+//push answer values to scores varible
+    $("#submit").on("click", function () {
+        userData = {
+            name:$("#name").val().trim(), 
+            photo:$("#photo").val().trim(), 
+            email:$("#email").val().trim(), 
+            scores:[]
+        }
+        
+        for (var i = 1; i <= 10; i++) {
+            userData.scores.push($(".q" + i + ":first-child").val().trim())
+
+        }
+       
+
+        $.post('/api/friends', userData)
+      		.done(function(data) {
+      			// console.log('response = ' + JSON.stringify(data));
+
+      			// Set the name and image values of friend match
+      			$('#matchNAme').html(data.matchName);
+		    	$("#matchImage").attr("src", data.matchImage);
+
+		    	// Pop open the modal dialog
+      			$('#popup').modal('open');
+      		});
+    })
 
 </script>
 
