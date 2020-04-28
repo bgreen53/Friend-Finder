@@ -19,6 +19,7 @@ app.post('/api/friends', function(req, res) {
     // Compute best friend match
     var matchName = '';
     var matchImage = '';
+    var matchEmail
     var totalDifference = 10000; // Make the initial value big for comparison
 
     // Examine all existing friends in the list

@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -211,37 +210,37 @@
 
     <div class="modal" tabindex="-1" role="dialog" id="popup">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Your Best Match</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Your Best Match</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img id="matchImage" class="materialboxed" width="300" src="">
+                    <h5 id="matchName"></h5>
+                    <h5 id="matchEmail"></h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
-            <div class="modal-body">
-                <img id="matchImage" class="materialboxed" width="650" src="">
-                <h5 id="matchName"></h5>
-                <h5 id="matchEmail"></h5>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 </body>
 
 <script type="text/javascript">
-   var userData = {
-            name: "", 
-            photo:"", 
-            email:"", 
-            scores:[]
-        }
+    var userData = {
+        name: "",
+        photo: "",
+        email: "",
+        scores: []
+    }
 
-       
 
-//replace dropdown button text with selection
+
+    //replace dropdown button text with selection
     function dropDown(i) {
         $(".a" + i + " p").on("click", function () {
 
@@ -255,32 +254,32 @@
         dropDown(i)
     }
 
-//push answer values to scores varible
+    //push answer values to scores varible
     $("#submit").on("click", function () {
         userData = {
-            name:$("#name").val().trim(), 
-            photo:$("#photo").val().trim(), 
-            email:$("#email").val().trim(), 
-            scores:[]
+            name: $("#name").val().trim(),
+            photo: $("#photo").val().trim(),
+            email: $("#email").val().trim(),
+            scores: []
         }
-        
+
         for (var i = 1; i <= 10; i++) {
             userData.scores.push($(".q" + i + ":first-child").val().trim())
 
         }
-       
+
 
         $.post('/api/friends', userData)
-      		.done(function(data) {
-      			// console.log('response = ' + JSON.stringify(data));
+            .done(function (data) {
 
-      			// Set the name and image values of friend match
-      			$('#matchNAme').html(data.matchName);
-		    	$("#matchImage").attr("src", data.matchImage);
+                // Set the name and image values of friend match
+                $('#matchName').html(data.matchName);
+                $("#matchImage").attr("src", data.matchImage);
+                $("#matchEmail").html(data.email)
 
-		    	// Pop open the modal dialog
-      			$('#popup').modal('open');
-      		});
+                // Pop open the modal dialog
+                $('#popup').modal('show');
+            });
     })
 
 </script>
