@@ -218,9 +218,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img id="matchImage" class="materialboxed" width="300" src="">
                     <h5 id="matchName"></h5>
-                    <h5 id="matchEmail"></h5>
+                    <img id="matchImage" class="materialboxed" width="300" src="">
+                     <h5 id="matchEmail"></h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -271,11 +271,11 @@
 
         $.post('/api/friends', userData)
             .done(function (data) {
-
+                console.log(data.matchEmail)
                 // Set the name and image values of friend match
                 $('#matchName').html(data.matchName);
                 $("#matchImage").attr("src", data.matchImage);
-                $("#matchEmail").html(data.email)
+                $("#matchEmail").html(data.matchEmail)
 
                 // Pop open the modal dialog
                 $('#popup').modal('show');

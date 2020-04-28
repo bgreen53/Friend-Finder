@@ -19,8 +19,8 @@ app.post('/api/friends', function(req, res) {
     // Compute best friend match
     var matchName = '';
     var matchImage = '';
-    var matchEmail
-    var totalDifference = 10000; // Make the initial value big for comparison
+    var matchEmail = '';
+    var totalDifference = 50; 
 
     // Examine all existing friends in the list
     for (var i = 0; i < friends.length; i++) {
@@ -35,13 +35,12 @@ app.post('/api/friends', function(req, res) {
 
         // If lowest difference, record the friend match
         if (diff < totalDifference) {
-            // console.log('Closest match found = ' + diff);
-            // console.log('Friend name = ' + friends[i].name);
-            // console.log('Friend image = ' + friends[i].photo);
+          
 
             totalDifference = diff;
             matchName = friends[i].name;
             matchImage = friends[i].photo;
+            matchEmail = friends[i].email;
         }
     }
 
@@ -49,7 +48,7 @@ app.post('/api/friends', function(req, res) {
     friends.push(userInput);
 
     // Send appropriate response
-    res.json({status: 'OK', matchName: matchName, matchImage: matchImage});
+    res.json({status: 'OK', matchName: matchName, matchImage: matchImage, matchEmail: matchEmail});
 });
 };
 
