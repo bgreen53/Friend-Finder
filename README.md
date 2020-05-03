@@ -6,4 +6,4 @@
 **Link to live app**: https://bg-friend-finder.herokuapp.com/survey
 - - -
 
-![Alt Text](https://gph.is/g/EBr9D2Q)
+<img src ="https://gph.is/g/EBr9D2Q">
