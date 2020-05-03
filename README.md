@@ -3,7 +3,7 @@
 
 **Created on**: `Apr 27 2020`
 
-**Link to live app**: https://bg-friend-finder.herokuapp.com/survey
+**Link to live app**: https://bg-friend-finder.herokuapp.com/
 - - -
 
 ## ABOUT THE APP
